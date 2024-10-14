@@ -1,4 +1,5 @@
 package edu.kirkwood.java2ee_demo;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,6 +36,8 @@ public class FractionServlet extends HttpServlet {
             f1.setDenominator(Integer.parseInt(den1));
         } catch(NumberFormatException e) {
             error += "<li>Denominator 1 not valid</li>";
+        } catch(ArithmeticException e) {
+            error += "<li>Denominator 1 cannot be 0</li>";
         }
 
 
@@ -48,6 +51,8 @@ public class FractionServlet extends HttpServlet {
             f2.setDenominator(Integer.parseInt(den2));
         } catch(NumberFormatException e) {
             error += "<li>Denominator 2 not valid</li>";
+        } catch(ArithmeticException e) {
+            error += "<li>Denominator 2 cannot be 0</li>";
         }
 
         if(!error.equals("")) {
@@ -56,6 +61,8 @@ public class FractionServlet extends HttpServlet {
             return;
         }
 
+        String result = f1.add(f2);
+        req.setAttribute("result", result);
         req.getRequestDispatcher("fraction.jsp").forward(req, resp);
     }
 }
