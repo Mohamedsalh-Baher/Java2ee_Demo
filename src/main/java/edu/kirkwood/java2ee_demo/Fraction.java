@@ -1,4 +1,5 @@
 package edu.kirkwood.java2ee_demo;
+
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -33,13 +34,13 @@ public class Fraction {
     }
 
     public String toString() {
-        return String.format("<sup>%s</sup>/<sub>%s</sub>",  numerator + "/" + denominator);
+        return String.format("<sup>%s</sup>/<sub>%s</sub>", numerator, denominator);
     }
 
     // Source: https://stackoverflow.com/a/4009247
     // Example of Recursion
     public static int gcd(int a, int b) {
-        if (b==0) return a;
+        if (b==0) return Math.abs(a);
         return gcd(b,a % b);
     }
 
@@ -62,11 +63,11 @@ public class Fraction {
         } else if(simplified.numerator > simplified.denominator) {
             int wholeNumber = simplified.numerator / simplified.denominator;
             int remainder = simplified.numerator % simplified.denominator;
-            return wholeNumber + "<sup> " + remainder + "/<sup>/<sup>" + simplified.denominator + "</sup>";
+            return wholeNumber + " <sup>" + remainder + "</sup>/<sub>" + simplified.denominator + "</sub>";
         } else if(simplified.numerator < 0 && Math.abs(simplified.numerator) > simplified.denominator) {
             int wholeNumber = simplified.numerator / simplified.denominator;
             int remainder = Math.abs(simplified.numerator) % simplified.denominator;
-            return wholeNumber + " <sup> " + remainder + "/<sup>/<sup>" + simplified.denominator + "</sup>";
+            return wholeNumber + " <sup>" + remainder + "</sup>/<sub>" + simplified.denominator + "</sub>";
         }
         return simplified.toString();
     }
@@ -82,4 +83,3 @@ public class Fraction {
 
 
 }
-
